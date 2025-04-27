@@ -1,0 +1,20 @@
+<form [formGroup]="loginForm" (submit)="login()">
+    <div>
+        <label for="username">Username</label>
+        <input formControlName="username" />
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input formControlName="password" />
+    </div>
+    <div>
+        <button type="submit">Sign In</button>
+    </div>
+    <div>
+        <a type="submit" routerLink="/register">Create an account</a>
+    </div>
+</form>
+
+<button (click)="test()">
+    Test
+</button>
