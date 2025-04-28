@@ -30,7 +30,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public String register(@RequestBody RegisterDTO registerDTO) {
-        User user = new User(registerDTO.getEmail(), registerDTO.getUsername(), registerDTO.getPassword(), Role.ADMIN);
+        User user = new User(registerDTO.getEmail(), registerDTO.getUsername(), registerDTO.getPassword(), Role.valueOf(registerDTO.getRole()));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "User registered successfully!";

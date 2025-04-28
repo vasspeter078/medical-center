@@ -13,7 +13,7 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'clinics', component: ClinicsComponent},
-    {path: 'prices', component: PricesComponent},
-    {path: 'aboutus', component: AboutUsComponent},
-    {path: 'connection', component: ConnectionComponent, canActivate: [roleGuard], data: { roles: ['ROLE_PATIENT']}},
+    {path: 'prices', component: PricesComponent, canActivate: [roleGuard], data: { role: ['ROLE_DOCTOR']}},
+    {path: 'aboutus', component: AboutUsComponent, canActivate: [roleGuard], data: { role: ['ROLE_ADMIN', 'ROLE_PATIENT']}},
+    {path: 'connection', component: ConnectionComponent, canActivate: [roleGuard], data: { role: ['ROLE_PATIENT']}},
 ];

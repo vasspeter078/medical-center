@@ -20,12 +20,27 @@ export class RegisterComponent{
       email: ["", Validators.required],
       username: ["", Validators.required],
       password: ["", Validators.required],
+      patientRole: [false],
+      doctorRole: [false],
+      adminRole: [false],
     })
   }
 
   register() {
     const formValue = this.registerForm.value;
-    this.authService.register(formValue.firstName, formValue.lastName, formValue.email, formValue.username, formValue.password).subscribe({
+    let role: string = "";
+    if (formValue.adminRole) {
+      role = "ADMIN";
+    } else {
+      if (formValue.doctorRole) {
+        role = "DOCTOR";
+      } else {
+        if (formValue.patientRole) {
+          role = "PATIENT";
+        }
+      }
+    }
+    this.authService.register(formValue.firstName, formValue.lastName, formValue.email, formValue.username, formValue.password, role).subscribe({
       next: (data) => { console.log(data);},
     });
   }

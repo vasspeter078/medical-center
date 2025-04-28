@@ -5,6 +5,9 @@ import com.vasspeter078.medical_center_server.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -21,9 +24,15 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<String> getUser(@PathVariable Long id) {
-        var user = this.userService.getUser(id);
+    public ResponseEntity<User> getUser(@PathVariable Long id) {
+        Optional<User> user = userService.getUser(id);
+        return user.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
-        return ResponseEntity.ok("s,df");
+    @GetMapping("/")
+    public ResponseEntity<List<User>> getUsers() {
+        List<User> users = userService.getUsers();
+        return ResponseEntity.ok(users);
     }
 }
