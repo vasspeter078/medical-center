@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDTO } from '../../dto/userDTO';
 import { UserService } from '../../service/user.service';
+import { Long } from 'mongodb';
 
 @Component({
   selector: 'app-users',
@@ -22,7 +23,9 @@ export class UsersComponent implements OnInit{
     });
   }
 
-  deleteUser(email: string) {
-    //this.userService.dele
+  deleteUser(id: Long) {
+    this.userService.deleteUser(id).subscribe({
+      next: () => {console.log("deleted");}
+    });
   }
 }

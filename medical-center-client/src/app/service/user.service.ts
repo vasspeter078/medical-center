@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Long } from 'mongodb';
 import { Observable } from 'rxjs';
-import { UserDTO } from '../dto/userDTO';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private userDTO: UserDTO | null = null;
+  //private userDTO: UserDTO | null = null;
 
   private apiUrl = 'http://localhost:8080/api';
 
@@ -20,5 +20,10 @@ export class UserService {
 
   getUsers(): Observable<any> {
     return this.http.get(`${this.apiUrl}/user/`);
+  }
+
+  deleteUser(id: Long): Observable<any> {
+    console.log(`${this.apiUrl}/user/${id}`)
+    return this.http.delete(`${this.apiUrl}/user/${id}`);
   }
 }

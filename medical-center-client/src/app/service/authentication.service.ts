@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { jwtDecode, JwtDecodeOptions } from 'jwt-decode';
-import { UserDTO } from '../dto/userDTO';
 import { UserService } from './user.service';
 
 export interface DecodedToken {
@@ -17,7 +16,7 @@ export interface DecodedToken {
 export class AuthenticationService {
 
   private apiUrl = 'http://localhost:8080/api';
-  private user: UserDTO | null = null;
+  //private user: UserDTO | null = null;
   private role: string | null = null;
 
   constructor(private http: HttpClient, private userService: UserService) {}
@@ -61,5 +60,9 @@ export class AuthenticationService {
 
   test(): Observable<any> {
     return this.http.get(`${this.apiUrl}/test`);
+  }
+
+  getUser(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/user/{id}`);
   }
 }

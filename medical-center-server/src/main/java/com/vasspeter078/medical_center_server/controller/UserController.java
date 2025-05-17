@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -34,7 +35,7 @@ public class UserController {
     @GetMapping("/")
     public ResponseEntity<List<User>> getUsers() {
         List<User> users = userService.getUsers();
-        System.out.println(users.size());
+        System.out.println("getusers");
         return ResponseEntity.ok(users);
     }
 
@@ -49,5 +50,12 @@ public class UserController {
         List<User> doctors = userService.getDoctors();
         System.out.println(doctors.size());
         return ResponseEntity.ok(doctors);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        System.out.println("user dle");
+        userService.deleteUser(id);
+        return ResponseEntity.ok("User deleted");
     }
 }

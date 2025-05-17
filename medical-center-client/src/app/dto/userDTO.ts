@@ -1,6 +1,8 @@
+import { Long } from "mongodb";
+
 export class UserDTO {
 
-    constructor(public firstName : string, public lastName : string, public email : string, public roles : [string]) {
+    constructor(public id: Long, public email : string, public username: string, public roles : [string]) {
 
     }
 }
