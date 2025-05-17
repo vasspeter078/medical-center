@@ -1,0 +1,16 @@
+<table>
+    <thead>
+      <tr>
+        <th>Email</th><th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+        @for(user of users; track user.email) {
+            <tr>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles }}</td>
+                <button (click)="deleteUser(user.email)"></button>
+            </tr>
+        }
+    </tbody>
+  </table>

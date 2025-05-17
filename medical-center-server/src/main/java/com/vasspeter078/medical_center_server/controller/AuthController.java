@@ -50,6 +50,6 @@ public class AuthController {
                 user.getPassword(),
                 Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRole()))
         ));
-        return Map.of("token", token);
+        return Map.of("token", token, "id", user.getId().toString());
     }
 }

@@ -1,14 +1,34 @@
 <header>
-    <div class="container">
-        <div class="row">
-            <div class="col-4" routerLink="/">
-                Medical Center
+    <div>
+        <div class="row" id="logo-row">
+            <div class="col-6" id="image-div" routerLink="/">
+                <img src="assets/images/medical-symbol.png" width="100"/>
             </div>
-            <div class="col-6">
+            <div class="col-3" id="contact-div">
+                <p>Telephone: +36 1 234 5678</p>
+                <p>Email: medicalcenter&#64;email.com</p>
+            </div>
+            <div class="col-3" id="address-div">
+                <p>Address: Budapest, Kossuth Lajos tér 1-3, 1055</p>
+            </div>
+        </div>
+        <div class="row" id="navbar-row">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
                 <app-nav></app-nav>
             </div>
             <div class="col-2">
                 <app-login-button></app-login-button>
+                @if (isAuthenticated()) {
+                    <app-logout-button></app-logout-button>
+                    <a routerLink="/account">Account</a>
+                }
+            </div>
+        </div>
+        <div class="row" id="admin-navbar-row">
+            <div class="col-4">
+                <app-admin-nav></app-admin-nav>
             </div>
         </div>
     </div>

@@ -11,6 +11,17 @@ export class ClinicsComponent {
   clinicNames : string[];
 
   constructor() {
-    this.clinicNames = ["Audiológia", "Belgyógyászat", "Bőrgyógyászat", "Diabetológia", "Endokrinológia", "Fizikoterápia", "Kardiológia", "Neurológia", "Reumatológia", "Szemészet"];
+    this.clinicNames = [
+      "Audiology",
+      "Internal Medicine",
+      "Dermatology",
+      "Diabetology",
+      "Endocrinology",
+      "Physiotherapy",
+      "Cardiology",
+      "Neurology",
+      "Rheumatology",
+      "Ophthalmology"
+    ];
   }
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { jwtDecode, JwtDecodeOptions } from 'jwt-decode';
 import { UserDTO } from '../dto/userDTO';
+import { UserService } from './user.service';
 
 export interface DecodedToken {
   sub: string;
@@ -16,16 +17,17 @@ export interface DecodedToken {
 export class AuthenticationService {
 
   private apiUrl = 'http://localhost:8080/api';
-  //private user: UserDTO;
+  private user: UserDTO | null = null;
   private role: string | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userService: UserService) {}
 
   login(username: string, password: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/auth/login`, {username, password}).pipe(
       tap(response => {
         if (response.token) {
           localStorage.setItem('jwt', response.token);
+          console.log(response.id);
         }
         this.role = this.getRole();
         console.log(this.role);

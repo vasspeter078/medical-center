@@ -1,4 +1,36 @@
-header {
+#logo-row {
+    background-color: rgb(255, 255, 255);
+    height: 100px;
+    margin: 0;
+}
+
+#navbar-row {
     background-color: rgb(0, 204, 255);
-    height: 60px;
+    height: 50px;
+    padding-top: 10px;
+}
+
+#admin-navbar-row {
+    background-color: rgb(0, 124, 155);
+    height: 50px;
+    padding-top: 10px;
+}
+
+#image-div {
+    height: 100px;
+}
+
+img {
+    height: 100px;
+    width: 100px;
+    padding: 10px;
+}
+
+#contact-div {
+    padding-top: 20px;
+    padding-left: 100px;
+}
+
+#address-div {
+    padding-top: 20px;
 }

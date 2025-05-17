@@ -1,5 +1,6 @@
 package com.vasspeter078.medical_center_server.controller;
 
+import com.vasspeter078.medical_center_server.dto.UpdateAccountDTO;
 import com.vasspeter078.medical_center_server.model.User;
 import com.vasspeter078.medical_center_server.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,20 @@ public class UserController {
     @GetMapping("/")
     public ResponseEntity<List<User>> getUsers() {
         List<User> users = userService.getUsers();
+        System.out.println(users.size());
         return ResponseEntity.ok(users);
+    }
+
+    @PostMapping("/update-account")
+    public ResponseEntity<String> updateAccount(@RequestBody UpdateAccountDTO updateAccountDTO) {
+        this.userService.updateUser(updateAccountDTO);
+        return ResponseEntity.ok("User updated");
+    }
+
+    @GetMapping("/doctors")
+    public ResponseEntity<List<User>> getDoctors() {
+        List<User> doctors = userService.getDoctors();
+        System.out.println(doctors.size());
+        return ResponseEntity.ok(doctors);
     }
 }

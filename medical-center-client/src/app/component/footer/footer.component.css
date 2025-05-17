@@ -1,4 +1,15 @@
 footer {
     background-color: aqua;
-    height: 100px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+p {
+    text-align: center;
+}
+
+#footer-div {
+    width: 80%;
 }

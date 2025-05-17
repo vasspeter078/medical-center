@@ -1,0 +1,49 @@
+.styled-table {
+    width: 60%;
+    border-collapse: collapse;
+    margin: 50px;
+    font-family: Arial, sans-serif;
+  }
+  
+.styled-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+.styled-table thead {  
+    font-weight: bold;
+  }
+  
+.styled-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  .content {
+    padding: 60px 20px;
+    height: 600px;
+
+    position: relative;
+    z-index: 2;
+}
+
+.faded-background {
+    position: relative;
+    background-image: url('/assets/images/hospital.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 60px 20px;
+    color: white;
+  }
+
+  .faded-background::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* 0.5 = 50% black overlay */
+    z-index: 1;
+  }

@@ -1,1 +1,21 @@
-<p>prices works!</p>
+<div class="faded-background">
+    <div>
+        @for (clinicPrice of clinicPrices; track clinicPrice) {
+            <table class="styled-table">
+                <thead>
+                  <tr>
+                    <th>{{clinicPrice[0]}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @for (price of clinicPrice[1]; track price) {
+                        <tr>
+                            <td>{{price[0]}}</td>
+                            <td>{{price[1]}}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
