@@ -1,22 +1,12 @@
 <form [formGroup]="openAppointmentForm" (submit)="openAppointment()">
 
-    <mat-form-field>
-        <mat-label>Meeting date</mat-label>
-        <input matInput [matDatepicker]="datepicker" formControlName="date">
-        <mat-datepicker #datepicker/>
-        <mat-datepicker-toggle [for]="datepicker" matSuffix/>
-    </mat-form-field>
-
-    <mat-form-field>
-    <mat-label>Meeting time</mat-label>
-    <input matInput
-        [matTimepicker]="timepicker"
-        formControlName="time"
-        [ngModelOptions]="{updateOn: 'blur'}">
-    <mat-timepicker #timepicker/>
-    <mat-timepicker-toggle [for]="timepicker" matSuffix/>
-    </mat-form-field>
-
+    <input
+  type="time"
+  id="appointment"
+  name="appointment"
+  min="09:00"
+  max="18:00"
+  required />
     <div>
         <button type="submit">Open</button>
     </div>
