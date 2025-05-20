@@ -9,7 +9,9 @@ import { ConnectionComponent } from './component/connection/connection.component
 import { AccountComponent } from './component/account/account.component';
 import { roleGuard } from './security/role.guard';
 import { UsersComponent } from './component/users/users.component';
-import { AppointmentsComponent } from './appointments/appointments.component';
+import { AppointmentsComponent } from './component/appointments/appointments.component';
+import { OpenAppointmentComponent } from './component/open-appointment/open-appointment.component';
+import { AdminClinicsComponent } from './component/admin-clinics/admin-clinics.component';
 
 export const routes: Routes = [
     {path: '', component: MainComponent},
@@ -21,5 +23,7 @@ export const routes: Routes = [
     {path: 'aboutus', component: AboutUsComponent},
     {path: 'connection', component: ConnectionComponent},
     {path: 'account', component: AccountComponent},
-    {path: 'users', component: UsersComponent, canActivate: [roleGuard], data: { role: ['ROLE_ADMIN']}}
+    {path: 'users', component: UsersComponent, canActivate: [roleGuard], data: { role: ['ROLE_ADMIN']}},
+    {path: 'admin-clinics', component: AdminClinicsComponent, canActivate: [roleGuard], data: { role: ['ROLE_ADMIN']}},
+    {path: 'open-appointment', component: OpenAppointmentComponent, canActivate: [roleGuard], data: { role: ['ROLE_DOCTOR']}}
 ];

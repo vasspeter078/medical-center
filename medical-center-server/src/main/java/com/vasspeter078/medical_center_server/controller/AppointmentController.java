@@ -27,10 +27,10 @@ public class AppointmentController {
     }
 
     @PostMapping("/open")
-    public String register(@RequestBody OpenAppointmentDTO openAppointmentDTO) {
+    public ResponseEntity<String> openAppointment(@RequestBody OpenAppointmentDTO openAppointmentDTO) {
         Appointment appointment = new Appointment(openAppointmentDTO.getTime(), openAppointmentDTO.getDoctorId());
         appointmentRepository.save(appointment);
-        return "Appointment opened successfully!";
+        return ResponseEntity.ok("Appointment opened");
     }
 
     @GetMapping("/")
@@ -61,6 +61,7 @@ public class AppointmentController {
     @GetMapping("/doctor/{doctorId}")
     public ResponseEntity<List<Appointment>> getAppointmentsByDoctor(@PathVariable Long doctorId) {
         List<Appointment> appointments = appointmentService.getAppointmentsByDoctor(doctorId);
+        System.out.println(appointments);
         return ResponseEntity.ok(appointments);
     }
 }

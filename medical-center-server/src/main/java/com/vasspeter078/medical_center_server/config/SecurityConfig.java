@@ -34,6 +34,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/login").permitAll()
                         .requestMatchers("/api/auth/register").permitAll()
+                        .requestMatchers("/api/user/doctor/").permitAll()
+                        .requestMatchers("/api/appointment/doctor/*").permitAll()
+                        .requestMatchers("/api/appointment/open").permitAll()
+                        .requestMatchers("/api/clinic/*").permitAll()
+                        .requestMatchers("/api/clinic").permitAll()
                         .requestMatchers("/api/test").hasRole("PATIENT")
                         .anyRequest().authenticated()
                 )

@@ -1,0 +1,21 @@
+<div class="content">
+    <button mat-fab (click)="openAddClinicDialog()" class="add-button">
+        <mat-icon>add</mat-icon>
+    </button>
+    @for (clinic of clinics; track clinic.id) {
+        <mat-card appearance="outlined">
+            <mat-card-header>
+                <mat-card-title> {{clinic.name}} </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="card-content">
+                    <div class="card-text-id">Id: {{clinic.id}}</div>
+                    <div class="card-text-description">Description: {{clinic.description}}</div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <button mat-button (click)="deleteClinic(clinic.id)" style="color:red;">Delete</button>
+            </mat-card-actions>
+        </mat-card>
+    }
+</div>

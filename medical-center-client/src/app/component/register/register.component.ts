@@ -2,45 +2,43 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication.service';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {ChangeDetectionStrategy,  signal} from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, MatButtonToggleModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrl: './register.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterComponent{
   registerForm : FormGroup;
 
+  hide = signal(true);
+
   constructor(private fb : FormBuilder, private authService : AuthenticationService) {
     this.registerForm = this.fb.group({
-      firstName: ["", Validators.required],
-      lastName: ["", Validators.required],
-      email: ["", Validators.required],
       username: ["", Validators.required],
+      email: ["", Validators.required],
       password: ["", Validators.required],
-      patientRole: [false],
-      doctorRole: [false],
-      adminRole: [false],
+      role: ["", Validators.required]
     })
+  }
+
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
   }
 
   register() {
     const formValue = this.registerForm.value;
-    let role: string = "";
-    if (formValue.adminRole) {
-      role = "ADMIN";
-    } else {
-      if (formValue.doctorRole) {
-        role = "DOCTOR";
-      } else {
-        if (formValue.patientRole) {
-          role = "PATIENT";
-        }
-      }
-    }
-    this.authService.register(formValue.firstName, formValue.lastName, formValue.email, formValue.username, formValue.password, role).subscribe({
+    this.authService.register(formValue.username, formValue.email, formValue.password, formValue.role).subscribe({
       next: (data) => { console.log(data);},
     });
   }

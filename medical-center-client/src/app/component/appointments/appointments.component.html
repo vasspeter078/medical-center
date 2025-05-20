@@ -1,0 +1,31 @@
+<div class="faded-background">
+    <div class="content">
+                    <label for="doctor">Select a doctor:</label>
+        <select [(ngModel)]="selectedDoctorId" name="doctor" id="doctor" (change)="loadAppointments()">
+            @for(doctor of doctors; track doctor.email) {
+                <option [value]="doctor.id">
+                    {{ doctor.username }}
+                </option>
+            }
+        </select>
+        <mat-card class="calendar-card">
+            <mat-calendar (selectedChange)="onDateChange($event)"></mat-calendar>
+        </mat-card>
+        
+
+        
+
+        @if(onSpecificDayDates.length > 0) {
+            <ul>
+            @for(date of onSpecificDayDates; track date.getDate()) {
+                <li>
+                    {{ date.getDate() }}
+                </li>
+            }
+            </ul>
+        }
+        @if(onSpecificDayDates.length === 0) {
+            <p>No appointments available on this day.</p>
+        }
+    </div>
+</div>

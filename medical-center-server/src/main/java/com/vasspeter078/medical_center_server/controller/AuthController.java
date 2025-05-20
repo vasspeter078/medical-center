@@ -30,7 +30,8 @@ public class AuthController {
 
     @PostMapping("/register")
     public String register(@RequestBody RegisterDTO registerDTO) {
-        User user = new User(registerDTO.getEmail(), registerDTO.getUsername(), registerDTO.getPassword(), Role.valueOf(registerDTO.getRole()));
+        System.out.println(registerDTO.getUsername());
+        User user = new User(registerDTO.getUsername(), registerDTO.getEmail(), registerDTO.getPassword(), Role.valueOf(registerDTO.getRole()));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "User registered successfully!";
@@ -38,7 +39,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public Map<String, String> login(@RequestBody LoginDTO loginDTO) {
-        User user = userRepository.findByUsername(loginDTO.getUsername())
+        User user = userRepository.findByEmail(loginDTO.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         if (!passwordEncoder.matches(loginDTO.getPassword(), user.getPassword())) {

@@ -45,10 +45,10 @@ public class UserController {
         return ResponseEntity.ok("User updated");
     }
 
-    @GetMapping("/doctors")
+    @GetMapping("/doctor/")
     public ResponseEntity<List<User>> getDoctors() {
         List<User> doctors = userService.getDoctors();
-        System.out.println(doctors.size());
+        System.out.println(doctors);
         return ResponseEntity.ok(doctors);
     }
 

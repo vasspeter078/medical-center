@@ -1,19 +1,11 @@
 <form [formGroup]="accountForm" (submit)="changeAccount()">
     <div>
-        <label for="firstName">First Name</label>
-        <input formControlName="firstName" />
-    </div>
-    <div>
-        <label for="lastName">Last Name</label>
-        <input formControlName="lastName" />
+        <label for="username">Name</label>
+        <input formControlName="username" />
     </div>
     <div>
         <label for="email">Email</label>
         <input formControlName="email" />
-    </div>
-    <div>
-        <label for="username">Username</label>
-        <input formControlName="username" />
     </div>
     <div>
         <button type="submit">Save</button>

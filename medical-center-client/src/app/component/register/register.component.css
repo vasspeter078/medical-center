@@ -1,0 +1,31 @@
+.content {
+    padding: 60px 20px;
+    height: 600px;
+
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    justify-content: center;
+}
+
+.faded-background {
+    position: relative;
+    background-image: url('/assets/images/hospital.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 60px 20px;
+    color: white;
+  }
+
+  .faded-background::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(241, 241, 241, 0.6); /* 0.5 = 50% black overlay */
+    z-index: 1;
+  }
+
+  .button-div {
+    padding-top: 20px;
+  }

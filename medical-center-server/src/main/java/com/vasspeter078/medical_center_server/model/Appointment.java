@@ -24,6 +24,8 @@ public class Appointment {
     @JoinColumn(name = "Id")
     private Long patientId;
 
+    public Appointment() {}
+
     public Appointment(LocalDateTime time, Long doctorId) {
         this.time = time;
         this.status = AppointmentStatus.AVAILABLE;

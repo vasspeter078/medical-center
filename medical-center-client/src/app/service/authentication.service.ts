@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { jwtDecode, JwtDecodeOptions } from 'jwt-decode';
 import { UserService } from './user.service';
+import { UserDTO } from '../dto/userDTO';
+import { Long } from 'mongodb';
 
 export interface DecodedToken {
   sub: string;
@@ -15,31 +17,38 @@ export interface DecodedToken {
 })
 export class AuthenticationService {
 
-  private apiUrl = 'http://localhost:8080/api';
-  //private user: UserDTO | null = null;
+  private readonly apiUrl = 'http://localhost:8080/api';
+
+  private id: Long | null = null;
+
   private role: string | null = null;
 
   constructor(private http: HttpClient, private userService: UserService) {}
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/auth/login`, {username, password}).pipe(
+  login(email: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/auth/login`, {email, password}).pipe(
       tap(response => {
         if (response.token) {
           localStorage.setItem('jwt', response.token);
           console.log(response.id);
         }
+        this.id = response.id;
         this.role = this.getRole();
-        console.log(this.role);
+        this.userService.id = this.id;
       })
     );
   }
 
-  register(firstName: string, lastName : string, email : string, username : string , password: string, role: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/auth/register`, {firstName, lastName, email, username, password, role});
+  register(username : string, email : string, password: string, role: string): Observable<any> {
+    console.log({username, email, password, role});
+    return this.http.post(`${this.apiUrl}/auth/register`, {username, email, password, role});
   }
 
   logout(): void {
+    this.id = null;
+    this.role = null;
     localStorage.removeItem('jwt');
+    this.userService.id = null;
   }
 
   getToken(): string | null {
@@ -54,8 +63,22 @@ export class AuthenticationService {
     return decodedToken.role;
   }
 
+  getId(): Long | null {
+    return this.id;
+  }
+
   isAuthenticated(): boolean {
     return !!this.getToken();
+  }
+
+  isDoctor(): boolean {
+    console.log(this.getRole());
+    console.log(this.role);
+    return this.getRole() === "[ROLE_DOCTOR]";
+  }
+
+  isAdmin(): boolean {
+    return this.getRole() === "[ROLE_ADMIN]";
   }
 
   test(): Observable<any> {

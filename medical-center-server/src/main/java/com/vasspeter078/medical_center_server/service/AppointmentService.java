@@ -52,6 +52,6 @@ public class AppointmentService {
         List<Appointment> doctorAppointments = appointments.stream()
                 .filter(appointment -> appointment.getDoctorId() == doctorId)
                 .collect(Collectors.toList());
-        return appointments;
+        return doctorAppointments;
     }
 }

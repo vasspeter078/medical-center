@@ -1,0 +1,28 @@
+<mat-dialog-content>
+    <p>Add a Clinic</p>
+    <form [formGroup]="addClinicForm" (submit)="addClinic()">
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <input matInput formControlName="description">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <button mat-button type="submit" cdkFocusInitial>Ok</button>
+        </div>
+    </form>
+</mat-dialog-content>
+<!--
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button type="submit" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>
+-->

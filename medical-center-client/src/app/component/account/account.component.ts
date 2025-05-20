@@ -15,16 +15,14 @@ export class AccountComponent {
 
   constructor(private fb : FormBuilder, private userService: UserService) {
     this.accountForm = this.fb.group({
-      firstName: [""],
-      lastName: [""],
-      email: [""],
       username: [""],
+      email: [""],
     })
   }
 
   changeAccount() {
     const formValue = this.accountForm.value;
-    this.userService.updateAccount(formValue.firstName, formValue.lastName, formValue.email, formValue.username).subscribe({
+    this.userService.updateAccount(formValue.username, formValue.email).subscribe({
       next: (data) => { console.log(data);},
     });
   }
