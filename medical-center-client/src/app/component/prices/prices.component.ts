@@ -28,7 +28,6 @@ export class PricesComponent {
     ngOnInit() {
       this.serviceService.getServices().subscribe(data => {
         this.services = data;
-        console.log(this.services);
       });
       this.clinicService.getClinics().subscribe(data => {
         this.clinics = data;

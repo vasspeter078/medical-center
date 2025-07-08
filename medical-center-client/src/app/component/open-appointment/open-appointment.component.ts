@@ -36,7 +36,6 @@ export class OpenAppointmentComponent implements OnInit {
     let doctorId: Long | null = this.authenticationService.getId();
     if (doctorId != null) {
       this.appointmentService.getAppointmentsByDoctor(doctorId).subscribe((data) => {
-        console.log(data);
         this.appointments = data;
       });
     }
@@ -45,16 +44,9 @@ export class OpenAppointmentComponent implements OnInit {
 
   openAppointment() {
     const dateTime = `${this.openAppointmentForm.value.date}T${this.openAppointmentForm.value.time}:00`;
-    const dateObj = new Date(dateTime);
-    console.log(dateTime)
     const doctorId = this.authenticationService.getId();
     if (doctorId != null) {
-      this.appointmentService.openAppointment(dateTime, doctorId).subscribe({
-        next: () => { 
-          
-          console.log("opened appointment");
-        }
-      });
+      this.appointmentService.openAppointment(dateTime, doctorId);;
     }
   }
 }

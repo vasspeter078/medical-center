@@ -4,7 +4,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {
-  MAT_DIALOG_DATA,
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
@@ -16,7 +15,7 @@ import { ClinicService } from '../../service/clinic.service';
 @Component({
   selector: 'app-add-clinic-dialog',
   standalone: true,
-  imports: [    MatFormFieldModule,
+  imports: [ MatFormFieldModule,
     MatInputModule,
     FormsModule,
     MatButtonModule,

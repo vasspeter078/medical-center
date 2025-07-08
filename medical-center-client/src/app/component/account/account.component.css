@@ -14,15 +14,15 @@
     padding: 60px 20px;
   }
 
-  .faded-background::before {
+.faded-background::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(241, 241, 241, 0.6); /* 0.5 = 50% black overlay */
+    background-color: rgba(241, 241, 241, 0.6);
     z-index: 1;
   }
 
-  mat-card {
+mat-card {
     padding-left:80px;
     width:30%;
 }

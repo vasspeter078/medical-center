@@ -27,7 +27,6 @@ export class AdminClinicsComponent {
   ngOnInit() {
     this.clinicService.getClinics().subscribe(data => {
       this.clinics = data;
-      console.log(this.clinics);
     });
   }
 
@@ -37,8 +36,6 @@ export class AdminClinicsComponent {
 
   deleteClinic(id: Long) {
     location.reload();
-    this.clinicService.deleteClinic(id).subscribe({
-      next: () => {console.log("deleted");}
-    });
+    this.clinicService.deleteClinic(id);
   }
 }

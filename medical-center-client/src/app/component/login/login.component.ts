@@ -37,14 +37,8 @@ export class LoginComponent {
   login() {
     const formValue = this.loginForm.value;
       this.authService.login(formValue.email, formValue.password).subscribe({
-        next: () => { console.log("user is logged in");
+        next: () => {
           this.router.navigateByUrl('/');}
       });
-  }
-
-  test() {
-    this.authService.test().subscribe({
-      next: () => {console.log("authorized");}
-    });
   }
 }

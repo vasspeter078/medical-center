@@ -38,8 +38,6 @@ export class RegisterComponent{
 
   register() {
     const formValue = this.registerForm.value;
-    this.authService.register(formValue.username, formValue.email, formValue.password, formValue.role).subscribe({
-      next: (data) => { console.log(data);},
-    });
+    this.authService.register(formValue.username, formValue.email, formValue.password, formValue.role);
   }
 }

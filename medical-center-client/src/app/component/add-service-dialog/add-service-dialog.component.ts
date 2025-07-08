@@ -35,12 +35,11 @@ export class AddServiceDialogComponent {
   }
 
   addService(): void {
-    console.log("service add")
-      const formValue = this.addServiceForm.value;
-      this.dialogRef.close();
-      location.reload();
-      this.serviceService.addService(formValue.name, formValue.price, formValue.clinicId).subscribe({
-        next: () => { console.log("service added"); }
-      });
+    const formValue = this.addServiceForm.value;
+    this.dialogRef.close();
+    location.reload();
+    this.serviceService.addService(formValue.name, formValue.price, formValue.clinicId).subscribe({
+      next: () => { console.log("service added"); }
+    });
   }
 }

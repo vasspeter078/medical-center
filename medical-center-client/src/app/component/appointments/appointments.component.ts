@@ -52,15 +52,11 @@ export class AppointmentsComponent {
   }
 
   loadAppointments(): void {
-    console.log("hello")
     if (this.selectedDoctorId != null) {
-      
       this.appointmentService.getAppointmentsByDoctor(this.selectedDoctorId).subscribe((data) => {
-        console.log(data);
         this.appointments = data;
         this.appointmentDates = [];
         for (let i = 0; i < this.appointments.length; i++) {
-          console.log(this.appointments[i]);
           this.appointmentDates.push(new Date(this.appointments[i].time));
         }
       });
@@ -69,22 +65,13 @@ export class AppointmentsComponent {
 
   onDateChange(date: Date) {
     this.selectedDate = date;
-    console.log(this.selectedDate);
     this.loadOnSpecificDayDates();
   }
 
   loadOnSpecificDayDates() {
-    console.log(this.selectedDate?.getDay());
-    console.log(this.appointmentDates[0]);
-    
     this.onSpecificDayDates = this.appointmentDates.filter(date =>
     date.getFullYear() === this.selectedDate?.getFullYear() &&
     date.getMonth() === this.selectedDate?.getMonth() &&
     date.getDate() === this.selectedDate?.getDate())
-    console.log(this.onSpecificDayDates);
-  }
-
-  bookAppointment() {
-
   }
 }

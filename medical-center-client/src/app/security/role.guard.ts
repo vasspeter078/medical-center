@@ -8,15 +8,10 @@ export const roleGuard: CanActivateFn = (route, state) => {
   const userRole = authService.getRole();
   let role;
   if (userRole != null) {
-    //roles = userRole.match(/ROLE_\w+/g);
     role = userRole.slice(1, -1);
   }
-  if (userRole != null)
-  console.log(role);
-  console.log(expectedRoles);
   if (userRole != null && role != null) {
     if (expectedRoles.includes(role)) {
-      console.log("authdjklfjsf");
       return true;
     }
   }

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserDTO } from '../../dto/userDTO';
 import { UserService } from '../../service/user.service';
 import { Long } from 'mongodb';
-import {MatTableModule} from '@angular/material/table';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -17,8 +16,6 @@ import { MatButtonModule } from '@angular/material/button';
 export class UsersComponent implements OnInit{
   users: UserDTO[] = [];
 
-  //displayedColumns: string[] = ['id', 'email', 'username', 'role', 'delete'];
-
   constructor(private userService: UserService) {
 
   }
@@ -26,14 +23,11 @@ export class UsersComponent implements OnInit{
   ngOnInit() {
     this.userService.getUsers().subscribe(data => {
       this.users = data;
-      console.log(this.users);
     });
   }
 
   deleteUser(id: Long) {
     location.reload();
-    this.userService.deleteUser(id).subscribe({
-      next: () => {console.log("deleted");}
-    });
+    this.userService.deleteUser(id);
   }
 }

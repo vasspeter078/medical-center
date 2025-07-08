@@ -27,7 +27,6 @@ export class AdminServicesComponent {
   ngOnInit() {
     this.serviceService.getServices().subscribe(data => {
       this.services = data;
-      console.log(this.services);
     });
   }
 
@@ -37,8 +36,6 @@ export class AdminServicesComponent {
 
   deleteService(id: Long) {
     location.reload();
-    this.serviceService.deleteService(id).subscribe({
-      next: () => {console.log("deleted");}
-    });
+    this.serviceService.deleteService(id);
   }
 }

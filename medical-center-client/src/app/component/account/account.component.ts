@@ -16,7 +16,10 @@ import {MatIconModule} from '@angular/material/icon';
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, MatListModule, MatGridListModule,
+  imports: [ReactiveFormsModule,
+      RouterLink,
+      MatListModule,
+      MatGridListModule,
       MatCardModule,
       MatGridListModule,
       MatButtonModule,
@@ -44,7 +47,6 @@ export class AccountComponent implements OnInit{
     let id = this.authService.getId();
     if (id != null) {
         this.appointmentService.getAppointmentsByPatient(id).subscribe(data => {
-            console.log(data);
             this.appointments = data;
             for (let i: number = 0; i < this.appointments.length; i++) {
               this.dates.push(new Date(this.appointments[i].time));
@@ -53,9 +55,7 @@ export class AccountComponent implements OnInit{
         this.userService.getUser(id).subscribe(data => {
           this.user = data;
         })
-
     }
-    console.log("appointments " + this.appointments.length)
   }
 
   changeAccount() {

@@ -17,7 +17,6 @@ export class UserService {
 
   updateAccount(username: string, email : string): Observable<any> {
     let id = this.id;
-    console.log(id);
     return this.http.post(`${this.apiUrl}/user/update-account`, {id, username, email});
   }
 
@@ -30,7 +29,6 @@ export class UserService {
   }
 
   deleteUser(id: Long): Observable<any> {
-    console.log(`${this.apiUrl}/user/${id}`)
     return this.http.delete(`${this.apiUrl}/user/${id}`);
   }
 

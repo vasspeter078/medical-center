@@ -30,7 +30,6 @@ export class AuthenticationService {
       tap(response => {
         if (response.token) {
           localStorage.setItem('jwt', response.token);
-          console.log(response.id);
         }
         this.id = response.id;
         this.role = this.getRole();
@@ -40,7 +39,6 @@ export class AuthenticationService {
   }
 
   register(username : string, email : string, password: string, role: string): Observable<any> {
-    console.log({username, email, password, role});
     return this.http.post(`${this.apiUrl}/auth/register`, {username, email, password, role});
   }
 
@@ -58,7 +56,6 @@ export class AuthenticationService {
   getRole(): string | null {
     const token = this.getToken();
     if (!token) return null;
-    //const decodedToken: DecodedToken = jwtDecode(token);
     const decodedToken = jwtDecode<DecodedToken>(token);
     return decodedToken.role;
   }
@@ -72,8 +69,6 @@ export class AuthenticationService {
   }
 
   isDoctor(): boolean {
-    console.log(this.getRole());
-    console.log(this.role);
     return this.getRole() === "[ROLE_DOCTOR]";
   }
 
