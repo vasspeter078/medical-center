@@ -1,13 +1,69 @@
-<form [formGroup]="accountForm" (submit)="changeAccount()">
-    <div>
-        <label for="username">Name</label>
-        <input formControlName="username" />
+<div class="faded-background">
+    <div class="content">
+
+
+
+
+        @if (user != null) {
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Name:</mat-card-title>
+                    <div class="name-button" align="end">
+                        <button mat-button (click)="editName(user.id)">
+                            <mat-icon fontIcon="edit"></mat-icon>
+                        </button>
+                    </div>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="name">{{user.username}}</div>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                    <button mat-button (click)="editName(user.id)">
+                        <mat-icon fontIcon="edit"></mat-icon>
+                    </button>
+                </mat-card-actions>
+
+                <mat-card-header>
+                    <mat-card-title>Email:</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="email">{{user.email}}</div>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                    <button mat-button (click)="editEmail(user.id)">
+                        <mat-icon fontIcon="edit"></mat-icon>
+                    </button>
+                </mat-card-actions>
+
+                <mat-card-header>
+                    <mat-card-title>Role:</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="role">{{user.role}}</div>
+                </mat-card-content>
+            </mat-card>
+        }
     </div>
-    <div>
-        <label for="email">Email</label>
-        <input formControlName="email" />
+    <div class="col-8">
+        <mat-grid-list cols="3" rowHeight="2:1">
+            @for (date of dates; track date.getDate()) {
+                <mat-grid-tile>
+                    <mat-card appearance="outlined">
+                        <mat-card-header>
+                            <mat-card-title> {{date.toDateString()}} </mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <div class="card-content">
+                                <div class="card-text-description"> {{date.getHours()}}:{{date.getMinutes()}} </div>
+                            </div>
+                        </mat-card-content>
+                            <mat-card-actions align="end">
+                                <button mat-button (click)="declineAppointment()" style="color:red;">Decline</button>
+                            </mat-card-actions>
+                    </mat-card>
+                </mat-grid-tile>
+            }
+        </mat-grid-list>
+
     </div>
-    <div>
-        <button type="submit">Save</button>
-    </div>
-</form>
+</div>

@@ -53,15 +53,19 @@ public class AppointmentController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteAppointment(@PathVariable Long id) {
-        this.appointmentService.
-                deleteAppointment(id);
+        this.appointmentService.deleteAppointment(id);
         return ResponseEntity.ok("Appointment deleted");
     }
 
     @GetMapping("/doctor/{doctorId}")
     public ResponseEntity<List<Appointment>> getAppointmentsByDoctor(@PathVariable Long doctorId) {
         List<Appointment> appointments = appointmentService.getAppointmentsByDoctor(doctorId);
-        System.out.println(appointments);
+        return ResponseEntity.ok(appointments);
+    }
+
+    @GetMapping("/patient/{patientId}")
+    public ResponseEntity<List<Appointment>> getAppointmentsByPatient(@PathVariable Long patientId) {
+        List<Appointment> appointments = appointmentService.getAppointmentsByPatient(patientId);
         return ResponseEntity.ok(appointments);
     }
 }

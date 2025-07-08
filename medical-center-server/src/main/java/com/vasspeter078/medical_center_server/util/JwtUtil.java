@@ -14,7 +14,7 @@ import java.util.function.Function;
 @Service
 public class JwtUtil {
 
-    private final String SECRET_KEY = "your-very-long-secret-key-for-signing-jwt-tokens";
+    private final String SECRET_KEY = "secret-key-for-signing-jwt-tokens";
     private final long EXPIRATION_TIME = 1000 * 60 * 60 * 10;
 
     private Key getSigningKey() {

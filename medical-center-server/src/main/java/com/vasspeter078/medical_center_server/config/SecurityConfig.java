@@ -36,15 +36,17 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/register").permitAll()
                         .requestMatchers("/api/user/doctor/").permitAll()
                         .requestMatchers("/api/appointment/doctor/*").permitAll()
+                        .requestMatchers("/api/appointment/patient/*").permitAll()
                         .requestMatchers("/api/appointment/open").permitAll()
                         .requestMatchers("/api/clinic/*").permitAll()
                         .requestMatchers("/api/clinic").permitAll()
-                        .requestMatchers("/api/test").hasRole("PATIENT")
+                        .requestMatchers("/api/service/*").permitAll()
+                        .requestMatchers("/api/service").permitAll()
+                        .requestMatchers("/api/user/*").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.disable())
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-
         return http.build();
     }
 
@@ -58,7 +60,7 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of("http://localhost:4200")); // Allow frontend origin
+        config.setAllowedOrigins(List.of("http://localhost:4200"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         source.registerCorsConfiguration("/**", config);

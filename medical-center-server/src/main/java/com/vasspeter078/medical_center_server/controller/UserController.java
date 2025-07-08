@@ -35,7 +35,6 @@ public class UserController {
     @GetMapping("/")
     public ResponseEntity<List<User>> getUsers() {
         List<User> users = userService.getUsers();
-        System.out.println("getusers");
         return ResponseEntity.ok(users);
     }
 
@@ -48,13 +47,11 @@ public class UserController {
     @GetMapping("/doctor/")
     public ResponseEntity<List<User>> getDoctors() {
         List<User> doctors = userService.getDoctors();
-        System.out.println(doctors);
         return ResponseEntity.ok(doctors);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
-        System.out.println("user dle");
         userService.deleteUser(id);
         return ResponseEntity.ok("User deleted");
     }

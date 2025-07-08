@@ -53,7 +53,6 @@ public class UserService {
             User user = optionalUser.get();
             user.setUsername(updateAccountDTO.getName());
             user.setEmail(updateAccountDTO.getEmail());
-            System.out.println(user.getEmail());
         }
         return optionalUser;
     }
@@ -61,7 +60,6 @@ public class UserService {
     public List<User> getDoctors() {
         List<User> users = this.userRepository.findAll();
         List<User> doctors = users.stream().filter(user -> user.getRole() == Role.DOCTOR).collect(Collectors.toList());
-        System.out.println("ljkdf");
         return doctors;
     }
 }

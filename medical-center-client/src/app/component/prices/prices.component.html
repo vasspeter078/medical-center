@@ -1,21 +1,32 @@
 <div class="faded-background">
     <div class="content">
-        @for (clinicPrice of clinicPrices; track clinicPrice) {
-            <table class="styled-table">
-                <thead>
-                  <tr>
-                    <th>{{clinicPrice[0]}}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    @for (price of clinicPrice[1]; track price) {
-                        <tr>
-                            <td>{{price[0]}}</td>
-                            <td>{{price[1]}}</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
+        <mat-grid-list cols="2" rowHeight="2:1">
+            @for (clinic of clinics; track clinic.id) {
+                <mat-grid-tile>
+                    <mat-card appearance="outlined">
+                        <mat-card-header style="background-color: aquamarine; color:rgb(97, 97, 97);">
+                            <mat-card-title> {{clinic.name}} </mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <div class="card-content">
+                                <mat-list>
+                                     @for (service of services; track service.id) {
+                                        @if (service.clinicId == clinic.id) {
+                                            <mat-list-item>
+                                                <div class="row">
+                                                    <div class="card-text-service-name col-8">{{service.name}}</div>
+                                                    <div class="card-text-service-price col-4">{{service.price}} USD</div>
+                                                </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                        }
+                                    }  
+                                </mat-list>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-grid-tile>
+            }
+        </mat-grid-list>
     </div>
 </div>

@@ -1,0 +1,22 @@
+<div class="content">
+    <button mat-fab (click)="openAddServiceDialog()" class="add-button">
+        <mat-icon>add</mat-icon>
+    </button>
+    @for (service of services; track service.id) {
+        <mat-card appearance="outlined">
+            <mat-card-header>
+                <mat-card-title> {{service.name}} </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="card-content">
+                    <div class="card-text-id">Id: {{service.id}}</div>
+                    <div class="card-text-price">Price: {{service.price}}</div>
+                    <div class="card-text-clinicId">ClinicId: {{service.clinicId}}</div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <button mat-button (click)="deleteService(service.id)" style="color:red;">Delete</button>
+            </mat-card-actions>
+        </mat-card>
+    }
+</div>

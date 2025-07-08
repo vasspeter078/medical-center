@@ -1,31 +1,43 @@
 <div class="faded-background">
     <div class="content">
-                    <label for="doctor">Select a doctor:</label>
-        <select [(ngModel)]="selectedDoctorId" name="doctor" id="doctor" (change)="loadAppointments()">
-            @for(doctor of doctors; track doctor.email) {
-                <option [value]="doctor.id">
-                    {{ doctor.username }}
-                </option>
-            }
-        </select>
-        <mat-card class="calendar-card">
-            <mat-calendar (selectedChange)="onDateChange($event)"></mat-calendar>
-        </mat-card>
-        
-
-        
-
-        @if(onSpecificDayDates.length > 0) {
-            <ul>
-            @for(date of onSpecificDayDates; track date.getDate()) {
-                <li>
-                    {{ date.getDate() }}
-                </li>
-            }
-            </ul>
-        }
-        @if(onSpecificDayDates.length === 0) {
-            <p>No appointments available on this day.</p>
-        }
+        <div class="row">
+            <div class="col-4">
+                
+                <mat-form-field>
+                    <mat-label>Select a Doctor</mat-label>
+                    <select matNativeControl [(ngModel)]="selectedDoctorId" (change)="loadAppointments()">
+                        @for(doctor of doctors; track doctor.email) {
+                            <option [value]="doctor.id">
+                                {{ doctor.username }}
+                            </option>
+                        }
+                    </select>
+                </mat-form-field>
+                <mat-card class="calendar-card">
+                    <mat-calendar [(selected)]="selectedDate" (selectedChange)="onDateChange($event)"></mat-calendar>
+                </mat-card>
+            </div>
+            <div class="col-8">
+                <mat-grid-list cols="3" rowHeight="2:1">
+                    @for (date of onSpecificDayDates; track date.getDate()) {
+                        <mat-grid-tile>
+                            <mat-card appearance="outlined">
+                                <mat-card-header>
+                                    <mat-card-title> {{date.toDateString()}} </mat-card-title>
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <div class="card-content">
+                                        <div class="card-text-description" style=" background-color: aquamarine; color:rgb(97, 97, 97); font-weight: bold; width: 25%; border-radius: 10%;"> {{date.getHours().toString().padStart(2, '0')}}:{{date.getMinutes().toString().padStart(2, '0')}} </div>
+                                    </div>
+                                </mat-card-content>
+                                    <mat-card-actions align="end">
+                                        <button mat-button (click)="bookAppointment()" style="color:rgb(0, 192, 64);">Book</button>
+                                    </mat-card-actions>
+                            </mat-card>
+                        </mat-grid-tile>
+                    }
+                </mat-grid-list>
+            </div>
+        </div>
     </div>
 </div>

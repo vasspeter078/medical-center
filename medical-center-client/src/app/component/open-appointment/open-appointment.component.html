@@ -1,15 +1,26 @@
-<form [formGroup]="openAppointmentForm" (submit)="openAppointment()">
+<div class="content">
+    <form [formGroup]="openAppointmentForm" (submit)="openAppointment()">
 
-    <input
-  type="time"
-  id="appointment"
-  name="appointment"
-  min="09:00"
-  max="18:00"
-  required />
-    <div>
-        <button type="submit">Open</button>
-    </div>
+        <input
+    type="time"
+    formControlName="time"
+    required />
 
-</form>
+        <input
+    type="date"
+    formControlName="date"
+    required />
+        <div>
+            <button type="submit">Open</button>
+        </div>
 
+    </form>
+
+    @for (appointment of appointments; track appointment.id) {
+        <mat-card appearance="outlined" [style]="appointment.status == 'AVAILABLE' ? 'background-color:rgb(174, 255, 142);' : 'background-color:rgb(255, 161, 161);'">
+            <mat-card-header>
+                <mat-card-title> {{appointment.time}} </mat-card-title>
+            </mat-card-header>
+        </mat-card>
+    }
+</div>

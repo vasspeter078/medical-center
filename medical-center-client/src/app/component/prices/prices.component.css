@@ -1,29 +1,4 @@
-.styled-table {
-    width: 60%;
-    border-collapse: collapse;
-    margin: 50px;
-    font-family: Arial, sans-serif;
-  }
-  
-.styled-table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  
-.styled-table thead {  
-    font-weight: bold;
-  }
-  
-.styled-table tbody tr:nth-child(even) {
-    background-color: #777777;
-  }
-  
-.styled-table tbody tr:hover {
-    background-color: #cecece;
-  }
-
-  .content {
+.content {
     padding: 60px 20px;
     height: 600px;
 
@@ -37,7 +12,6 @@
     background-size: cover;
     background-position: center;
     padding: 60px 20px;
-    color: white;
   }
 
   .faded-background::before {
@@ -46,4 +20,15 @@
     top: 0; left: 0; right: 0; bottom: 0;
     background-color: rgba(0, 0, 0, 0.6); /* 0.5 = 50% black overlay */
     z-index: 1;
+  }
+
+  mat-card {
+    width: 90%;
+    height:90%;
+    background-color: rgb(228, 228, 228);
+  }
+
+  mat-list-item {
+    display: flex;
+    
   }

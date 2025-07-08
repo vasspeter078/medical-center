@@ -54,4 +54,12 @@ public class AppointmentService {
                 .collect(Collectors.toList());
         return doctorAppointments;
     }
+
+    public List<Appointment> getAppointmentsByPatient(Long patientId) {
+        List<Appointment> appointments = this.appointmentRepository.findAll();
+        List<Appointment> patientAppointments = appointments.stream()
+                .filter(appointment -> appointment.getPatientId() == patientId)
+                .collect(Collectors.toList());
+        return patientAppointments;
+    }
 }

@@ -12,6 +12,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { AppointmentDTO } from '../../dto/appointmentDTO';
 import {MatSelectModule} from '@angular/material/select';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-appointments',
@@ -21,7 +23,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatNativeDateModule,
     MatCardModule,
     MatSelectModule,
-    MatInputModule],
+    MatInputModule,
+    MatGridListModule,
+    MatButtonModule],
   templateUrl: './appointments.component.html',
   styleUrl: './appointments.component.css'
 })
@@ -78,5 +82,9 @@ export class AppointmentsComponent {
     date.getMonth() === this.selectedDate?.getMonth() &&
     date.getDate() === this.selectedDate?.getDate())
     console.log(this.onSpecificDayDates);
+  }
+
+  bookAppointment() {
+
   }
 }

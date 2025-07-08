@@ -1,24 +1,37 @@
 import { Component } from '@angular/core';
+import { ServiceDTO } from '../../dto/serviceDTO';
+import { ServiceService } from '../../service/service.service';
+import { ClinicService } from '../../service/clinic.service';
+import { ClinicDTO } from '../../dto/clinicDTO';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule} from '@angular/material/grid-list';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
 
 @Component({
   selector: 'app-prices',
   standalone: true,
-  imports: [],
+  imports: [MatCardModule, MatGridListModule, MatListModule, MatDividerModule],
   templateUrl: './prices.component.html',
   styleUrl: './prices.component.css'
 })
 export class PricesComponent {
-  clinicPrices = [
-    ["Audiology", [["Check-Up Appointment", "100 USD"], ["Follow-Up Appointment", "80 USD"], ["Specialist Consultation", "120 USD"]]],
-    ["Internal Medicine", [["Check-Up Appointment", "100 USD"], ["Follow-Up Appointment", "80 USD"], ["Specialist Consultation", "120 USD"]]],
-    ["Dermatology", [["Check-Up Appointment", "100 USD"], ["Follow-Up Appointment", "80 USD"], ["Specialist Consultation", "120 USD"]]],
-    ["Diabetology", [["Check-Up Appointment", "100 USD"], ["Follow-Up Appointment", "80 USD"], ["Specialist Consultation", "120 USD"]]],
-    ["Endocrinology", [["Check-Up Appointment", "100 USD"], ["Follow-Up Appointment", "80 USD"], ["Specialist Consultation", "120 USD"]]],
-    ["Physiotheraphy", [["Check-Up Appointment", "100 USD"], ["Follow-Up Appointment", "80 USD"], ["Specialist Consultation", "120 USD"]]],
-    ["Cardiology", [["Check-Up Appointment", "100 USD"], ["Follow-Up Appointment", "80 USD"], ["Specialist Consultation", "120 USD"]]],
-    ["Neurology", [["Check-Up Appointment", "100 USD"], ["Follow-Up Appointment", "80 USD"], ["Specialist Consultation", "120 USD"]]],
-    ["Rheumatology", [["Check-Up Appointment", "100 USD"], ["Follow-Up Appointment", "80 USD"], ["Specialist Consultation", "120 USD"]]],
-    ["Ophtomalmology", [["Check-Up Appointment", "100 USD"], ["Follow-Up Appointment", "80 USD"], ["Specialist Consultation", "120 USD"]]],
-  ]
 
+    services: ServiceDTO[] = [];
+
+    clinics: ClinicDTO[] = []
+  
+    constructor(private serviceService: ServiceService, private clinicService: ClinicService) {
+  
+    }
+  
+    ngOnInit() {
+      this.serviceService.getServices().subscribe(data => {
+        this.services = data;
+        console.log(this.services);
+      });
+      this.clinicService.getClinics().subscribe(data => {
+        this.clinics = data;
+      })
+    }
 }

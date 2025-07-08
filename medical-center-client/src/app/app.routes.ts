@@ -12,6 +12,7 @@ import { UsersComponent } from './component/users/users.component';
 import { AppointmentsComponent } from './component/appointments/appointments.component';
 import { OpenAppointmentComponent } from './component/open-appointment/open-appointment.component';
 import { AdminClinicsComponent } from './component/admin-clinics/admin-clinics.component';
+import { AdminServicesComponent } from './component/admin-services/admin-services.component';
 
 export const routes: Routes = [
     {path: '', component: MainComponent},
@@ -25,5 +26,6 @@ export const routes: Routes = [
     {path: 'account', component: AccountComponent},
     {path: 'users', component: UsersComponent, canActivate: [roleGuard], data: { role: ['ROLE_ADMIN']}},
     {path: 'admin-clinics', component: AdminClinicsComponent, canActivate: [roleGuard], data: { role: ['ROLE_ADMIN']}},
+    {path: 'admin-services', component: AdminServicesComponent, canActivate: [roleGuard], data: { role: ['ROLE_ADMIN']}},
     {path: 'open-appointment', component: OpenAppointmentComponent, canActivate: [roleGuard], data: { role: ['ROLE_DOCTOR']}}
 ];

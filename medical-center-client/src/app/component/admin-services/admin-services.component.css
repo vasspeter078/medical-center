@@ -1,6 +1,6 @@
 mat-card {
     padding-left:80px;
-    width:60%;
+    width:40%;
 }
 
 .card-content {
@@ -10,19 +10,24 @@ mat-card {
 }
 
 .card-text-id {
-    width:170px;
+    width:130px;
 }
-.card-text-email {
+.card-text-price {
     width:300px;
 }
-.card-text-role {
-    width:150px;;
+.card-text-clinicId {
+    width:300px;
 }
-
 .content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
-    padding-top: 16px;
+    gap: 16px; 
+}
+
+.add-button {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: aquamarine;
+    color:rgb(97, 97, 97);
 }

@@ -8,6 +8,7 @@
     background-color: rgb(0, 204, 255);
     height: 45px;
     padding-top: 5px;
+
 }
 
 #admin-navbar-row {
@@ -39,4 +40,8 @@ img {
 
 #address-div {
     padding-top: 20px;
+}
+
+.row {
+    margin:0%;
 }

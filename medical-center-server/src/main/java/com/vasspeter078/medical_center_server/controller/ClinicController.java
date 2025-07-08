@@ -28,7 +28,6 @@ public class ClinicController {
 
     @PostMapping("/add")
     public ResponseEntity<String> openClinic(@RequestBody OpenClinicDTO openClinicDTO) {
-        System.out.println("hello");
         Clinic clinic = new Clinic(openClinicDTO.getName(), openClinicDTO.getDescription());
         clinicRepository.save(clinic);
         return ResponseEntity.ok("Clinic opened");
@@ -44,10 +43,5 @@ public class ClinicController {
     public ResponseEntity<String> deleteClinic(@PathVariable Long id) {
         this.clinicService.deleteClinic(id);
         return ResponseEntity.ok("Clinic deleted");
-    }
-
-    @PutMapping("/add-doctor")
-    public ResponseEntity<String> addDoctorToClinic(@RequestBody AddDoctorToClinicDTO addDoctorToClinicDTO) {
-        return ResponseEntity.ok("jksl");
     }
 }
